@@ -35,11 +35,11 @@ namespace SimpleAzureBlobFetcher {
         }
 
         private static void HandleInputTooLittle() {
-            Console.WriteLine(String.Format("Please Include Only {0} Arguments: API_KEY API_SECRET"), EXPECTED_ARG_LENGTH);
+            Console.WriteLine(String.Format("Please Include Only {0} Arguments: Account_Name Account_Key"), EXPECTED_ARG_LENGTH);
         }
 
         private static void HandleInputTooLarge() {
-            Console.WriteLine(String.Format("Please Include Only {0} Arguments: API_KEY API_SECRET"), EXPECTED_ARG_LENGTH);
+            Console.WriteLine(String.Format("Please Include Only {0} Arguments: Account_Name Account_Key"), EXPECTED_ARG_LENGTH);
         }
     }
 }
