@@ -1,5 +1,5 @@
 # simple-azure-blob-fetcher
-[C#] Console - Give Azure Storage credentials, Download all containers (as Folders) and all blobs (as Files)
+[C#] Console - Give Azure Storage credentials, Download all containers and all blobs
 
 Quickest Way To Use:
 
