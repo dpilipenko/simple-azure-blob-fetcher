@@ -41,6 +41,11 @@ namespace SimpleAzureBlobFetcher {
             DirectoryInfo outputDir = GetOrCreateOutputFolder();
 
             new AzureClient().Run(ACCT_NAME, ACCT_KEY, outputDir);
+            Process.Start(new ProcessStartInfo() { 
+                FileName = outputDir.ToString(),
+                UseShellExecute = true,
+                Verb = "open"
+            });
         }
 
         private static DirectoryInfo GetOrCreateOutputFolder() {
