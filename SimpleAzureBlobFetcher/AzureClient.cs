@@ -12,11 +12,33 @@ namespace SimpleAzureBlobFetcher {
     class AzureClient {
 
         public void Run(string acctName, string acctKey) {
-            string connectionString = "DefaultEndpointsProtocol=https;AccountName="+acctName+";AccountKey="+acctKey;
+            string connectionString = "DefaultEndpointsProtocol=https;AccountName=" + acctName + ";AccountKey=" + acctKey;
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
 
             Console.WriteLine("Azure Client Connected.");
-            Console.WriteLine(storageAccount.FileStorageUri);
+
+            CloudBlobClient client = storageAccount.CreateCloudBlobClient();
+            ProcessContainers(client.ListContainers());
+        }
+
+        private void ProcessContainers(IEnumerable<CloudBlobContainer> enumerable) {
+            int counter = 0;
+            foreach (CloudBlobContainer container in enumerable) {
+                counter++;
+                Console.WriteLine("Container {0}: {1}", counter, container.Name);
+                ProcessBlobs(container.ListBlobs());
+            }
+        }
+
+        private void ProcessBlobs(IEnumerable<IListBlobItem> enumerable) {
+            int counter = 0;
+            foreach (IListBlobItem item in enumerable) {
+                if (item.GetType() == typeof(CloudBlockBlob)) {
+                    CloudBlockBlob blob = (CloudBlockBlob)item;
+                    counter++;
+                    Console.WriteLine("\tBlob {0}: {1}", counter, blob.Name);
+                }
+            }
         }
 
     }
