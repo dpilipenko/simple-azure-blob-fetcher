@@ -34,8 +34,8 @@ namespace SimpleAzureBlobFetcher {
             int counter = 0;
             foreach (IListBlobItem item in enumerable) {
                 if (item.GetType() == typeof(CloudBlockBlob)) {
-                    CloudBlockBlob blob = (CloudBlockBlob)item;
                     counter++;
+                    CloudBlockBlob blob = (CloudBlockBlob)item;
                     Console.WriteLine("\tBlob {0}: {1}", counter, blob.Name);
                 }
             }
